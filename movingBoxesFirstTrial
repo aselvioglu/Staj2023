@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box1" style="width: 100px; height: 100px; position: absolute; left: 80px; top: 5px; background-color: rgb(0, 114, 99);">First Box</div>
+    <div id="box2" style="width: 100px; height: 100px; position: absolute; left: 480px; top: 5px; background-color: rgb(170, 170, 60);">Second Box</div>
+    <div id="box3" style="width: 100px; height: 100px; position: absolute; left: 80px; top: 405px; background-color: rgb(234, 0, 255);">Third Box</div>
+    <div id="box4" style="width: 100px; height: 100px; position: absolute; left: 480px; top: 405px; background-color: rgb(255, 0, 21);">Fourth Box</div>
+
+    <script>
+        var box1 = document.getElementById("box1");
+        var box2 = document.getElementById("box2");
+        var box3 = document.getElementById("box3");
+        var box4 = document.getElementById("box4");
+
+        var box1Top = 5;
+        var box2Left = 480;
+        var box3Left = 80;
+        var box4Top = 405;
+
+        function moveBoxes() {
+            // Move second box leftward
+            if (box2Left >= 80) {
+                box2Left -= 1;
+                box2.style.left = box2Left + "px";
+            }
+
+            // Move third box rightward
+            if (box3Left <= 480) {
+                box3Left += 1;
+                box3.style.left = box3Left + "px";
+            }
+
+            // Move fourth box upward
+            if (box4Top >= 5) {
+                box4Top -= 1;
+                box4.style.top = box4Top + "px";
+            }
+
+            // Move first box vertically
+            if (box1Top <= 405) {
+                box1Top += 1;
+                box1.style.top = box1Top + "px";
+            }
+        }
+
+        // Set the interval to call the moveBoxes function repeatedly with a delay of 10ms (for smooth animation)
+        var animationInterval = setInterval(moveBoxes, 10);
+    </script>
+</body>
+</html>
