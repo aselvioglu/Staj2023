@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moving Boxes</title>
+    <style>
+        .squares {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+        }
+        .color1 { background-color: rgb(41, 202, 148); }
+        .color2 { background-color: rgb(255, 127, 165); }
+        .color3 { background-color: rgb(136, 127, 255); }
+        .color4 { background-color: rgb(130, 153, 47); }
+    </style>
+</head>
+<body>
+    <div id="box1" class="squares color1">First Box</div>
+    <div id="box2" class="squares color2">Second Box</div>
+    <div id="box3" class="squares color3">Third Box</div>
+    <div id="box4" class="squares color4">Fourth Box</div>
+    
+    <script>
+        var box1 = document.getElementById("box1");
+        var box2 = document.getElementById("box2");
+        var box3 = document.getElementById("box3");
+        var box4 = document.getElementById("box4");
+
+        var box1Top = 0, box1Left = 0;
+        var box2Top = 0, box2Left = window.innerWidth - 100;
+        var box3Top = window.innerHeight - 100, box3Left = 0;
+        var box4Top = window.innerHeight - 100, box4Left = window.innerWidth - 100;
+
+        function moveBox(box, positionTop, positionLeft) {
+            if (positionTop < window.innerHeight - 100 && positionLeft == 0) {
+                positionTop += 1;
+                box.style.top = positionTop + "px";
+            } 
+            if (positionTop == window.innerHeight - 100 && positionLeft < window.innerWidth - 100) {
+                positionLeft += 1;
+                box.style.left = positionLeft + "px";
+            } 
+            if (positionLeft == window.innerWidth - 100 && positionTop > 0) {
+                positionTop -= 1;
+                box.style.top = positionTop + "px";
+            } 
+            if (positionTop == 0 && positionLeft > 0) {
+                positionLeft -= 1;
+                box.style.left = positionLeft + "px";
+            }
+            // Update the position variables
+            if (box === box1) {
+                box1Top = positionTop;
+                box1Left = positionLeft;
+            } else if (box === box2) {
+                box2Top = positionTop;
+                box2Left = positionLeft;
+            } else if (box === box3) {
+                box3Top = positionTop;
+                box3Left = positionLeft;
+            } else if (box === box4) {
+                box4Top = positionTop;
+                box4Left = positionLeft;
+            }
+        }
+        
+        function moveBoxes() {
+            moveBox(box1, box1Top, box1Left);
+            moveBox(box2, box2Top, box2Left);
+            moveBox(box3, box3Top, box3Left);
+            moveBox(box4, box4Top, box4Left);
+        }
+    
+        // to call the moveBoxes() function in every 10 milliseconds, setInterval () function is utilized
+        setInterval(moveBoxes, 10);
+    </script>
+</body>
+</html>
