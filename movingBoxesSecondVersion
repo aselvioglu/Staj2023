@@ -28,54 +28,45 @@
                 box1Top += 1;
                 box1.style.top = box1Top + "px";
             } if(box1Top==405 && box1Left<480) {
-               
                 box1Left += 1;
                 box1.style.left = box1Left + "px";
             }
             if(box1Left==480 && box1Top>5 ) {
-               
                 box1Top -= 1;
                 box1.style.top = box1Top + "px";
             }if(box1Top==5 && box1Left>80) {
-               
                 box1Left -= 1;
                 box1.style.left = box1Left + "px";
             }
            
-            // Move second box leftward
+            // Move second box
             if (box2Top < 405 && box2Left==80) {
                 box2Top += 1;
                 box2.style.top = box2Top + "px";
             } else if(box2Top==405 && box2Left<480) {
-                // Reset the position of the first box
                 box2Left += 1;
                 box2.style.left = box2Left + "px";
             }
             else if(box2Top>5 && box2Left==480) {
-                // Reset the position of the first box
                 box2Top -= 1;
                 box2.style.top = box2Top + "px";
             }else if(box2Top==5 && box2Left>80) {
-                // Reset the position of the first box
                 box2Left -= 1;
                 box2.style.left = box2Left + "px";
             }
 
-            // Move third box rightward
+            // Move third box
             if (box3Top < 405 && box3Left==80) {
                 box3Top += 1;
                 box3.style.top = box3Top + "px";
             } else if(box3Top==405 && box3Left<480) {
-                // Reset the position of the first box
                 box3Left += 1;
                 box3.style.left = box3Left + "px";
             }
             else if(box3Top>5 && box3Left==480) {
-                // Reset the position of the first box
                 box3Top -= 1;
                 box3.style.top = box3Top + "px";
             }else if(box3Top==5 && box3Left>80) {
-                // Reset the position of the first box
                 box3Left -= 1;
                 box3.style.left = box3Left + "px";
             }
@@ -99,9 +90,8 @@
 
            
         }
-
-        // Set the interval to call the moveBoxes function repeatedly with a delay of 10ms (for smooth animation)
-        var animationInterval = setInterval(moveBoxes, 10);
+        // to call the moveBoxes() function in every 10 miliseconds, setInterval () function is utilized
+        setInterval(moveBoxes, 10);
     </script>
 </body>
 </html>
