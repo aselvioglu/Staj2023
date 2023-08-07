@@ -1,13 +1,13 @@
 const { MongoClient } = require('mongodb');
 
-const uri = "mongodb+srv://aydinselvioglu:<*********>@cluster0.ysvlpb7.mongodb.net/test?retryWrites=true&w=majority";
+const uri = "mongodb+srv://aydinselvioglu:<*********>@cluster0.ysvlpb7.mongodb.net/";
 
 const client = new MongoClient(uri);
 
 async function run() {
   try {
     await client.connect();
-    const db = client.db('postalar');
+    const db = client.db('Cluster0');
     const collection = db.collection('postalar');
 
     // Find the first document in the collection
