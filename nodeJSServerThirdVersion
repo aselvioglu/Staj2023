@@ -1,0 +1,67 @@
+const express = require('express');
+const { MongoClient } = require('mongodb');
+
+const app = express();
+const port = 3000;
+
+const uri = "mongodb+srv://aydinselvioglu:********@cluster0.ysvlpb7.mongodb.net/test?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+
+
+app.get('/', async (req, res) => {
+    try {
+      await client.connect();
+  
+      const db = client.db('blog');
+      const collection = db.collection('postalar');
+  
+      const clients = {
+        students: [
+          { name: "ali", id: 345 },
+          { name: "nazmiye", id: 346 }
+        ],
+        mother: [
+          { name: "vedia", phone: "3566543" }
+        ]
+      };
+  
+      const things = {
+        ids: [2, 3, 4, 5, 6],
+        dates: [2343, 2345, 2346, 3454]
+      };
+  
+      const machines = {
+        ids: [1, 3, 4, 5, 6],
+        dates: [2343, 2345, 2346, 3454]
+      };
+  
+      const result = await collection.insertOne(clients);
+      const result1 = await collection.insertMany([things, machines]);
+  
+      // Delete a specific document using a filter
+      const result2 = await collection.deleteOne({ "dates": 2345 });
+  
+      // Update a specific element in the 'ids' array of the 'machines' document
+      const result3 = await collection.updateOne(
+        { "_id": machines._id, "ids": 3 },
+        { $set: { "ids.$": 7 } }
+      );
+  
+      console.log("Inserted document:", result.insertedId, result1.insertedIds, result2.deletedCount, result3.modifiedCount);
+  
+      const documents = await collection.find({}).toArray();
+      console.log("Documents:", documents);
+  
+      res.json(documents);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'An error occurred' });
+    } finally {
+      await client.close();
+    }
+  });
+  
+  app.listen(port, () => {
+    console.log(`Server is listening at http://localhost:${port}`);
+  });
+  
